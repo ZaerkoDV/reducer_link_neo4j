@@ -9,6 +9,8 @@ import java.util.List;
 import org.apache.commons.validator.routines.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.instinctools.reducerlink.dao.LinkDao;
 import com.instinctools.reducerlink.dao.LinkHistoryDao;
 import com.instinctools.reducerlink.dao.UserDao;
@@ -21,6 +23,7 @@ import com.instinctools.reducerlink.service.support.PagedResult;
 import com.instinctools.reducerlink.service.support.ValidationResult;
 
 @Service
+@Transactional
 public class LinkServiceImpl extends AuthorizedService implements LinkService {
     private static final String TAG_REQUIRED= "tagRequired";
     private static final String COMMENT_REQUIRED= "commentRequired";

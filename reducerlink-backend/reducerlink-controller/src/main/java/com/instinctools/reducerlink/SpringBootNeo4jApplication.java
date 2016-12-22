@@ -1,54 +1,85 @@
 package com.instinctools.reducerlink;
 
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.data.neo4j.core.GraphDatabase;
+import org.springframework.data.neo4j.core.TypeRepresentationStrategy;
+import org.springframework.data.neo4j.template.Neo4jTemplate;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import java.util.Locale;
+import org.springframework.data.neo4j.rest.SpringRestGraphDatabase;
+import org.springframework.data.neo4j.support.typerepresentation.NoopRelationshipTypeRepresentationStrategy;
+import org.neo4j.graphdb.GraphDatabaseService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.context.web.SpringBootServletInitializer;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.BufferedImageHttpMessageConverter;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.i18n.FixedLocaleResolver;
+
+import org.neo4j.graphdb.Relationship;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.context.annotation.Import;
+import org.springframework.data.neo4j.config.EnableNeo4jRepositories;
+import org.springframework.data.neo4j.config.Neo4jConfiguration;
+import org.springframework.data.neo4j.rest.SpringRestGraphDatabase;
+import org.springframework.data.rest.webmvc.config.RepositoryRestMvcConfiguration;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @SpringBootApplication
 @ComponentScan("com.instinctools.reducerlink")
-//@EntityScan("com.instinctools.reducerlink")
 @Configuration
 public class SpringBootNeo4jApplication extends SpringBootServletInitializer {
 
-    public static void main(String[] args) {
-        SpringApplication.run(SpringBootNeo4jApplication.class, args);
-    }
 
-    @Override
-    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-        return application.sources(SpringBootNeo4jApplication.class);
-    }
+	public static final String URL = System.getenv("NEO4J_URL") != null ? System.getenv("NEO4J_URL") : "http://localhost:7474/db/data/";
 
-    @Bean
-    public LocaleResolver getLocaleResolver() {
-        return new FixedLocaleResolver(new Locale("en", "US"));
-    }
+	@Bean
+	public GraphDatabaseService graphDatabaseService() {
+		return new SpringRestGraphDatabase(URL);
+	}
 
-    @Bean
-    public BufferedImageHttpMessageConverter getBufferedImageHttpMessageConverter() {
-        return new BufferedImageHttpMessageConverter();
-    }
+	@SuppressWarnings("rawtypes")
+	public TypeRepresentationStrategy relationshipTypeRepresentationStrategy() {
+		return new NoopRelationshipTypeRepresentationStrategy();
+	}
 
-    @Bean
-    public WebMvcConfigurer getWebMvcConfigurer() {
-        return new WebMvcConfigurerAdapter() {
-            @Override
-            public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**")
-                    .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
-                    .allowedHeaders("Content-Type", "Content-Range", "Content-Disposition", "Content-Description");
-            }
-        };
-    }
+
+
+
+	public static void main(String[] args) {
+		SpringApplication.run(SpringBootNeo4jApplication.class, args);
+	}
+
+	@Override
+	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+		return application.sources(SpringBootNeo4jApplication.class);
+	}
+
+	@Bean
+	public LocaleResolver getLocaleResolver() {
+		return new FixedLocaleResolver(new Locale("en", "US"));
+	}
+
+	@Bean
+	public BufferedImageHttpMessageConverter getBufferedImageHttpMessageConverter() {
+		return new BufferedImageHttpMessageConverter();
+	}
+
+	@Bean
+	public WebMvcConfigurer getWebMvcConfigurer() {
+		return new WebMvcConfigurerAdapter() {
+			@Override
+			public void addCorsMappings(CorsRegistry registry) {
+				registry.addMapping("/**")
+				.allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+				.allowedHeaders("Content-Type", "Content-Range", "Content-Disposition", "Content-Description");
+			}
+		};
+	}
 }

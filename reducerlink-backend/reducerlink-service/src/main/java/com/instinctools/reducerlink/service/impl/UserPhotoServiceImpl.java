@@ -6,6 +6,8 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.instinctools.reducerlink.dao.UserDao;
 import com.instinctools.reducerlink.dao.UserPhotoDao;
 import com.instinctools.reducerlink.model.User;
@@ -14,6 +16,7 @@ import com.instinctools.reducerlink.service.UserPhotoService;
 import com.instinctools.reducerlink.service.base.AuthorizedService;
 
 @Service
+@Transactional
 public class UserPhotoServiceImpl extends AuthorizedService implements UserPhotoService {
     @Autowired
     private UserPhotoDao userPhotoDao;

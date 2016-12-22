@@ -4,6 +4,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import com.instinctools.reducerlink.dao.LinkDao;
 import com.instinctools.reducerlink.dao.UserDao;
 import com.instinctools.reducerlink.dao.UserSecurityDao;
@@ -16,6 +17,7 @@ import com.instinctools.reducerlink.service.support.PagedResult;
 import com.instinctools.reducerlink.service.support.ValidationResult;
 
 @Service
+@Transactional
 public class UserServiceImpl extends AuthorizedService implements UserService {
     private static final String ERROR_INVALID_CREDENTIALS = "invalidCredentials";
     private static final String ADMIN_ROLE = "admin";

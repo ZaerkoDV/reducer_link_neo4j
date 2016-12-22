@@ -5,6 +5,8 @@ import org.apache.commons.validator.routines.InetAddressValidator;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.instinctools.reducerlink.dao.UserCorespondenceDao;
 import com.instinctools.reducerlink.dao.UserDao;
 import com.instinctools.reducerlink.model.User;
@@ -14,6 +16,7 @@ import com.instinctools.reducerlink.service.base.AuthorizedService;
 import com.instinctools.reducerlink.service.support.ValidationResult;
 
 @Service
+@Transactional
 public class UserCorespondenceServiceImpl extends AuthorizedService implements UserCorespondenceService {
     private static final String EMAIL_REQUIRED = "emailRequired";
     private static final String EMAIL_EXIST = "emailExsist";
