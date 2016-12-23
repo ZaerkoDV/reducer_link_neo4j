@@ -26,9 +26,8 @@ allprojects {
 
 dependencies {
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-neo4j', version: '1.4.0.RELEASE'
-    compile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: 'springBootVersion'
     //  compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-rest', version: 'springBootVersion
-
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: 'springBootVersion'
     compile group: 'org.springframework', name: 'spring-orm', version: '3.0.6.RELEASE'
     compile group: 'org.neo4j.driver', name: 'neo4j-java-driver', version: '1.0.0'
     compile group: 'org.neo4j', name: 'neo4j-kernel', version: '3.1.0'
