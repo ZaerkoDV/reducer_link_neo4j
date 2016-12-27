@@ -1,25 +1,25 @@
 package com.instinctools.reducerlink;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import java.util.Locale;
+import org.neo4j.ogm.config.Configuration;
+import org.neo4j.ogm.session.SessionFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.context.web.SpringBootServletInitializer;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.converter.BufferedImageHttpMessageConverter;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.i18n.FixedLocaleResolver;
 
 @SpringBootApplication
 @ComponentScan("com.instinctools.reducerlink")
-@Configuration
-public class SpringBootNeo4jApplication extends SpringBootServletInitializer {
-
+public class SpringBootNeo4jApplication extends SpringBootServletInitializer {	  
+	
 	public static void main(String[] args) {
 		SpringApplication.run(SpringBootNeo4jApplication.class, args);
 	}

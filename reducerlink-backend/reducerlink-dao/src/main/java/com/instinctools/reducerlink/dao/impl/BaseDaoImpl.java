@@ -3,13 +3,10 @@ package com.instinctools.reducerlink.dao.impl;
 import java.io.Serializable;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.neo4j.support.Neo4jTemplate;
-
 public class BaseDaoImpl<T, ID extends Serializable> {
 	
 //	@Autowired
-//	private Neo4jTemplate neo4jTemplate;
+//    private DaoRepository<T> repository;
 
 	protected Class<T> domainClass;
 
@@ -18,24 +15,26 @@ public class BaseDaoImpl<T, ID extends Serializable> {
     }
 
     public T findOne(Long id) {
-    	return null;
+    	return null;//repository.findOne(id);
     }
-
-    public List<T> findAll() {
-        return null;
+    
+	public List<T> findAll() {
+        return null;//(List<T>) repository.findAll();
     }
 
     public T save(T object) {
-        return null;//neo4jTemplate.save(object);
+        return null;//repository.save(object);
     }
 
     public long count() {
-        return 0;
+        return 0;//repository.count();
     }
 
     public void delete(Long id) {
+        //repository.delete(id);
     }
 
     public void delete(T object) {
+    	//repository.delete(object);
     }
 }

@@ -4,7 +4,7 @@ buildscript {
     }
 
     dependencies {
-        classpath group: 'org.springframework.boot', name: 'spring-boot-gradle-plugin', version: springBootVersion
+        classpath group: 'org.springframework.boot', name: 'spring-boot-gradle-plugin', version: '1.4.0.RELEASE'
     }
 }
 
@@ -26,12 +26,18 @@ allprojects {
 
 dependencies {
     compile project(':reducerlink-service')
-    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: springBootVersion
-    compile group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: springBootVersion
-    compile group: 'org.springframework.boot', name: 'spring-boot-starter-velocity', version: springBootVersion
-    compile group: 'org.springframework.boot', name: 'spring-boot-starter-mail', version: springBootVersion
-    //compile group: 'org.neo4j', name: 'neo4j-ogm', version: '1.1.0'
-    //compile group: 'org.springframework.data', name: 'spring-data-neo4j', version: '1.1.0.RELEASE'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '1.4.0.RELEASE'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: '1.4.0.RELEASE'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-velocity', version: '1.4.0.RELEASE'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-mail', version: '1.4.0.RELEASE'
+    compile group: 'org.neo4j', name: 'neo4j-ogm', version: '1.1.0'
+    compile group: 'org.neo4j', name: 'neo4j-kernel', version: '2.1.0-M01'
+  
+    //compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-rest', version: '1.4.2.RELEASE'
+    compile group: 'org.springframework.data', name: 'spring-data-neo4j', version: '4.1.1.RELEASE'
+    compile group: 'javax.transaction', name: 'jta', version: '1.1'
+    compile group: 'org.springframework.data', name: 'spring-data-neo4j-rest', version: '3.3.2.RELEASE'
+    compile group: 'org.neo4j', name: 'neo4j-kernel', version: '3.1.0'
 }
 
 processResources {

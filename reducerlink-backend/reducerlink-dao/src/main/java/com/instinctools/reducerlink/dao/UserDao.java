@@ -1,7 +1,6 @@
 package com.instinctools.reducerlink.dao;
 
 import java.util.List;
-
 import com.instinctools.reducerlink.model.User;
 
 public interface UserDao extends BaseDao<User, Long> {
