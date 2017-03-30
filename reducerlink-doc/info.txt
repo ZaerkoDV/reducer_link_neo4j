@@ -1,4 +1,0 @@
-http://localhost:7474/
-
-neo4j
-root
